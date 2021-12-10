@@ -4,7 +4,7 @@ import math
 
 # Advent of Code 2021
 # Day 05
-# Problem 01
+# Problems 01 and 02
 
 # Description:
 # Given: 
@@ -13,9 +13,13 @@ import math
 #   Determine which cells on the grid are crossed by the line pt_pairments and how many times.
 #   Find points which have been crossed at least two times.
 #   Count these points.
+#
 # Note:
 # I Will be using this ray-tracing algorithm 
 # http://playtechs.blogspot.com/2007/03/raytracing-on-grid.htmlehrman
+#
+# Note:
+# Ditched the above algo in favor of the plain Bresenham algo.
 
 Point = namedtuple('Point', 'x y')
 
@@ -49,7 +53,7 @@ class Grid:
         for pt in bresenham(p0.x, p0.y, p1.x, p1.y):
             self.visit(pt[0], pt[1])
 
-
+    # this algo "covers" too many pixels
     def ray_trace(self, p0, p1) -> None:
         dx = abs(p1.x - p0.x)
         dy = abs(p1.y - p0.y)
